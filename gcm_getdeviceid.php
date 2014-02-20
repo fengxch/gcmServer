@@ -7,10 +7,11 @@ $string = file_get_contents("deviceid.json");
 $json_a = json_decode($string, true);
 
 $deviceid = $data["deviceid"];
+var_dump($deviceid);
 //if(array_key_exists($deviceid, $json_a)) {
     $json_a[$deviceid]=array(
                 'name'  => $data["name"],
-                'itemids'  $data["itemids"]
+                'itemids' =>   $data["itemids"],
                 );
 //}else{
 	
