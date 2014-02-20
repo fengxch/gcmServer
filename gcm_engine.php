@@ -4,9 +4,11 @@ $message = $_POST['message'];
 
 // Set POST variables
 $url = 'https://android.googleapis.com/gcm/send';
-
+$myArray = explode(',', $_POST['registrationIDs']);
+//echo "array0".$myArray[0];
+//echo "array1".$myArray[1];
 $fields = array(
-                'registration_ids'  => array($_POST['registrationIDs']),
+                'registration_ids'  => $myArray,
                 'data'              => array( "message" => $message ),
                 );
 

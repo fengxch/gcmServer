@@ -6,16 +6,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $string = file_get_contents("deviceid.json"); 
 $json_a = json_decode($string, true);
 
-$deviceid = $data["deviceid"];
-echo $deviceid;
-if(!empty($deviceid)) {
-    $json_a[$deviceid]=array(
-                'name'  => $data["name"],
-                'itemids' =>   $data["itemids"],
-                );
-}else{
-	
-}
+unset($json_a[$data["deviceid"]]); ;
 
 $handle = fopen("deviceid.json", "w");
 fwrite($handle,json_encode($json_a));
