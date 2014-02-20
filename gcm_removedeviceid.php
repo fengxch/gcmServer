@@ -13,6 +13,7 @@ fwrite($handle,json_encode($json_a));
 fclose($handle);
 
 header('Content-Type: application/json');
-echo json_encode($json_a);
+//echo $result;
+echo json_encode(array('result' => 'OK'));
 
 ?>

@@ -8,7 +8,14 @@ function getDeviceids()
 		$result.=$key.",";
 	}
 	$result = mb_substr($result, 0, -1);
-	echo $result;
+	return $result;
 }
+
+function getDeviceInfo()
+{
+	$string = file_get_contents("deviceid.json");
+	return $string;
+}
+
 //getDeviceids();
 ?>
