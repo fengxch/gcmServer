@@ -1,10 +1,33 @@
 <?php
+include('util.php');
+
 // Message to be sent
 $message = $_POST['message'];
-
+if(is_null($message)){
+	$data = json_decode(file_get_contents('php://input'), true);
+	if(is_null($data["message"])){
+		echo "empty return";
+		return;
+	}else{
+		$message = $data["message"];
+	}
+}
+var_dump($message);
 // Set POST variables
 $url = 'https://android.googleapis.com/gcm/send';
-$myArray = explode(',', $_POST['registrationIDs']);
+$myArray;
+if (empty($_POST['registrationIDs'])) {
+	$myArray = explode(',', getDeviceids());
+}else{
+	$myArray = explode(',', $_POST['registrationIDs']);
+}
+var_dump($myArray);
+$apikey;
+if(empty($_POST['apiKey'])){
+	$apikey="AIzaSyA6-o89WI-spluhoANDfoC3fD7iZwzDRWc";
+}else{
+	$apikey=$_POST['apiKey'];
+}
 //echo "array0".$myArray[0];
 //echo "array1".$myArray[1];
 $fields = array(
@@ -13,7 +36,7 @@ $fields = array(
                 );
 
 $headers = array( 
-                    'Authorization: key=' . $_POST['apiKey'],
+                    'Authorization: key=' . $apikey,
                     'Content-Type: application/json'
                 );
 
